@@ -1,0 +1,48 @@
+package com.practice.linkedlist;
+
+public class RemoveNthNodeFromEndOfList19 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+       int length = 1;
+		ListNode next = head.next;
+		while(next != null) {
+			length++;
+			next = next.next;
+		}
+		if(length == n) {
+			ListNode ln = head.next;
+			head = null;
+			head = ln;
+			return head;
+		}
+		int pos = length - n;
+		int c = 0;
+		ListNode cur = head;
+		while(c!= pos -1) {
+			cur = cur.next;
+			c++;
+		}
+		ListNode temp = cur.next.next;
+		cur.next = null;
+		cur.next = temp;
+		return head;
+    }
+}
